@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block main %}
+        <h1>Add child</h1>
+        <br><br>
+        <form action="/child-new" method="POST">
+
+            <label for="firstname">First name</label>
+            <br>
+            <input type="text" id="firstname" name="firstname" class="form-box" placeholder="">
+                <br><br>
+
+            <label for="lastname">Last name</label>
+            <br>
+            <input type="text" id="lastname" name="lastname" class="form-box" placeholder=""></input>
+                <br><br>
+
+            <label for="notes">Notes</label>
+            <br>
+            <textarea type="text" id="notes" name="notes" class="form-box" placeholder="Allergies, preferences etc."></textarea>
+                <br><br>
+
+
+
+            <label for="date">Birth date</label>
+            <input type="date" id="date" name="date" value="{{ years }}-{{ month }}-{{ day }}"/>
+
+            <label for="parents">Parent email(s)</label>
+            <br>
+            <textarea type="text" id="parents" name="parents" class="form-box" placeholder="One email per line"></textarea>
+                <br><br>
+
+            <input type="submit" id="submit" name="submit" class="submit-button" value="Save">
+        </form>
+
+{% endblock %}

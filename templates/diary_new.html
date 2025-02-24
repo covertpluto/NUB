@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+
+  <link rel="icon" href="{{url_for('static', filename='icons/icon_144x144.png')}}" type="image/png">
+  <link rel="icon" href="{{url_for('static', filename='icons/icon_192x192.png')}}" type="image/png">
+  <link rel="icon" href="{{url_for('static', filename='icons/icon_512x512.png')}}" type="image/png">
+  <link rel="apple-touch-icon" href="{{url_for('static', filename='icons/icon_144x144.png')}}" type="image/png">
+  <link rel="apple-touch-icon" href="{{url_for('static', filename='icons/icon_192x192.png')}}" type="image/png">
+  <link rel="apple-touch-icon" href="{{url_for('static', filename='icons/icon_512x512.png')}}" type="image/png">
+  <link rel="manifest" href="/manifest.json">
+
+  <script>
+      const devMode = false;
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register("/sw.js").then(function(registration) {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+
+
+          function isDesktopBrowser() {
+    let isMobile = /Android|mobile|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    return !isMobile;
+}
+
+
+const isInStandaloneMode = () =>
+      (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone) || document.referrer.includes('android-app://');
+
+    window.addEventListener('load', function() {
+
+    // check if it's in the desktop browser first. if this is the case then give them a qr code to scan
+    if (isDesktopBrowser()){
+    console.log("Detected desktop browser");
+    if(devMode){return false;}
+    document.getElementById("main").style.display = "none"
+    document.getElementById("help-install").style.display = "block"
+    document.getElementById("help-install-1").style.display = "block"
+    document.getElementById("navbar").style.display = "none"
+    }else{
+
+    if (isInStandaloneMode()) { // check if it's installed standalone (is PWA). if not then prompt them to install
+    console.log("webapp is installed. no need to prompt");
+}else{
+    //document.getElementById("main").style.display = "none"
+    //document.getElementById("help-install").style.display = "block"
+    //document.getElementById("help-install-2").style.display = "block"
+    //document.getElementById("help-install-1").style.display = "none"
+    //document.getElementById("navbar").style.display = "none"
+
+}
+}
+
+      });
+
+
+
+  </script>
+        <script src=
+                    "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+
+    </script>
+        <script src="{{url_for('static', filename='script.js')}}"></script>
+
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}" type="text/css">
+
+    </head>
+    <body>
+
+    <div class="main-container" id="main">
+        <h1>New diary record</h1>
+        <br><br>
+        <form action="/diary-new" method="POST">
+            <label for="what-we-did">What we did today</label>
+            <br><br>
+            <textarea type="text" id="what-we-did" name="what-we-did" class="form-box" placeholder="Write about what you did today..."></textarea>
+            <br><br>
+            <label for="what-we-ate">What we ate today</label>
+            <br><br>
+            <textarea type="text" id="what-we-ate" name="what-we-ate" class="form-box" placeholder="Write about what they ate today..."></textarea>
+            <br><br>
+            <label for="wow-moment">Wow moments</label>
+            <br>
+            <textarea type="text" id="wow-moment" name="wow-moment" class="form-box" placeholder="Anything of special mention?"></textarea>
+            <br><br>
+            <label for="healthcare">Healthcare notes</label>
+            <br>
+            <input type="text" id="healthcare" name="healthcare" class="form-box" placeholder="Medicine, illnesses...">
+            <br><br>
+            <label for="time-entries">Nap times</label>
+            <div id="time-entries">
+                <br>
+                <!-- Time entries will be added here by JavaScript -->
+            </div>
+            {{ errormsg }}
+            <input type="submit" id="submit" name="submit" class="submit-button">
+        </form>
+
+
+        <!-- For mobile devices -->
+        <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    </div>
+
+
+    <div class="help-install-container" id="help-install" style="display: none">
+        <h1>Welcome to NUB</h1>
+
+    <div id="help-install-1" style="display: none">
+        <p>
+        <h2>First time using NUB?</h2>
+
+        <p>
+            NUB (short for Nanny hUB) is an app designed to help you with your childcare needs.<br>
+            How to install:<br>
+        <ul>1. Scan the below QR code on your device. Follow instructions on screen.</ul>
+        <div id="qrcode" style="margin: auto; width: 50%; padding: 10px"></div>
+
+        </p>
+
+        <script>
+            var qrcode = new QRCode("qrcode",
+            "https://ropi.uk");
+        </script>
+        <br><br><br>
+        <h4>I scanned the code already!</h4>
+        <p>This app is optimised for mobile devices. If you are on iPhone, click the <span style="background-color:white; border:1px solid black; padding-left:5px; padding-right:5px"><span style="font-size:25px">A</span>A</span> button and click on Request Mobile Website</p>
+    </div>
+
+        <div id="help-install-2" style="display: none">
+            <p>
+                <ul>2. Tap on Share or Options</ul>
+                <ul>3. Scroll down and tap Add to Home Screen</ul>
+                <ul>4. Tap Add</ul>
+                <ul>5. Open the app on the home screen</ul>
+            </p>
+            </div>
+
+
+    </div>
+
+
+<div class="navbar" id="navbar">
+    <button class="navbar-button" onclick="location.href='/';"><img src="{{url_for('static', filename='icons/logo_navbar.png')}}" class="navbar-icon"></button>
+    <button class="navbar-button" onclick="location.href='/diary';"><img src="{{url_for('static', filename='icons/diary_navbar.png')}}" class="navbar-icon"></button>
+    <button class="navbar-button" onclick="location.href='/calendar';"><img src="{{url_for('static', filename='icons/calendar_navbar.png')}}" class="navbar-icon"></button>
+    <button class="navbar-button" onclick="location.href='/food-plan';"><img src="{{url_for('static', filename='icons/meals_navbar.png')}}" class="navbar-icon"></button>
+    <button class="navbar-button" onclick="location.href='/menu';"><img src="{{url_for('static', filename='icons/menu_navbar.svg')}}" class="navbar-icon" height="50px" width="50px"></button>
+
+</div>
+
+    </body>
+    </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

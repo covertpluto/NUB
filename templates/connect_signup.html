@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block main %}
+
+    <h1>Connect setup</h1>
+
+    <p>Connect with nearby nannies!</p>
+
+    <br><br>
+    <form action="/connect_signup" method="POST">
+
+        <label for="addr1">Address Line 1</label>
+        <input type="text" id="addr1" name="addr1" class="form-box" placeholder="">
+
+        <br><br>
+
+        <label for="addr2">Address Line 2</label>
+        <input type="text" id="addr2" name="addr2" class="form-box" placeholder="">
+
+        <br><br>
+
+        <label for="addr3">Address Line 3</label>
+        <input type="text" id="addr3" name="addr3" class="form-box" placeholder="">
+
+        <br><br>
+
+        <label for="addr4">Address Line 4</label>
+        <input type="text" id="addr4" name="addr4" class="form-box" placeholder="">
+
+        <br><br>
+
+        <label for="eml">Email to display</label>
+        <input type="text" id="eml" name="eml" class="form-box" placeholder="" value="{{ eml }}">
+
+        <br><br>
+
+        <p>By pressing Save your display email will be visible to other users.<br>Your address will only be used to display approximate distances to other users.</p>
+
+        <input type="submit" id="submit" name="submit" class="submit-button" value="Save">
+    </form>
+{% endblock %}

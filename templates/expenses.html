@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block main %}
+        <h1>Expenses</h1>
+        <form class="form-inline" action="/expenses">
+            Select a date range:
+            <br><br>
+            {% if date_start_viewing|length == 0 %}
+            <input type="date" id="date_start" name="date_start" value="{{ years }}-{{ month }}-{{ int(day) - 7 }}"/>
+            {% else %}
+            <input type="date" id="date_start" name="date_start" value="{{ date_start_viewing }}"/>
+            {% endif %}
+            to
+            {% if date_end_viewing|length == 0 %}
+            <input type="date" id="date_end" name="date_end" value="{{ years }}-{{ month }}-{{ day }}"/>
+            {% else %}
+            <input type="date" id="date_end" name="date_end" value="{{ date_end_viewing }}"/>
+            {% endif %}
+
+            <input type="submit" name="submit" class="submit-button" value="Go"/>
+        </form>
+{% if is_nanny %}
+        <a href="/log-expense"><button class="add">+</button></a>
+{% endif %}
+{% if expenses|length >= 1 %}
+        {% for expense in expenses %}
+        <div class="diarylist">
+           <h2>{{ expense.datetime_str[:-3] }}</h2> <!-- We chop off the last bit of the time string -->
+            <h3>£{{ expense.amount }}</h3>
+            <br>
+            <p>
+                {% if expense.description|length <= 40 %}
+                {{ expense.description }}
+                {% else %}
+                {{ expense.description[:40] }}...
+                {% endif %}
+            </p>
+        </div>
+        {% endfor %}
+        <p>Total: £{{ total }}</p>
+        {% else %}
+        <br><br>
+        <h4>No records found<br>Try a different date</h4>
+        {% endif %}
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block main %}
+
+<h1>Login</h1>
+<br><br>
+
+<form action="#" method="POST">
+    <label for="email">Email:</label>
+    <input type="text" name="email" />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" />
+
+    <br><br>
+
+    <button type="submit" class="submit-button">
+        Sign in
+    </button>
+</form>
+
+<br><br>
+
+<p class="errormsg">{{ error }}</p>
+
+<a href="/signup">
+    <button class="submit-button">
+        Sign up
+    </button>
+</a>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block main %}
+        <h1>Hello, user</h1>
+        <h2>{{ date_formatted }}</h2>
+
+<br>
+        <div class="next-events white-bg" onclick="location.href='/calendar';">
+            <h2>Upcoming</h2>
+            <br>
+
+            <ul class="event">
+                <h5>Do laundry</h5>
+                <h6>10:00</h6> <!-- remove the last 3 characters, the colon and seconds -->
+            </ul>
+
+            <ul class="event">
+                <h5>Cook lunch</h5>
+                <h6>12:45</h6> <!-- remove the last 3 characters, the colon and seconds -->
+            </ul>
+        </div>
+
+
+<br>
+        {% if not user_is_nanny %}
+        <div class="next-events white-bg">
+            <h2>Nanny's upcoming</h2>
+            <br>
+            <ul class="event">
+                <h5>Meeting with boss</h5>
+                <h6>10:45</h6> <!-- remove the last 3 characters, the colon and seconds -->
+            </ul>
+
+            <ul class="event">
+                <h5>GP appointment</h5>
+                <h6>14:15</h6> <!-- remove the last 3 characters, the colon and seconds -->
+            </ul>
+        </div>
+        {% endif %}
+
+
+{% endblock %}

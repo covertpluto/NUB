@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block main %}
+
+        <h1>Food plans</h1>
+
+        <form class="form-inline" action="/edit-food-plan">
+            <label for="date">Select a date:</label>
+            {% if date_editing|length == 0 %}
+            <input type="date" id="date" name="date" value="{{ years }}-{{ month }}-{{ day }}"/>
+            {% else %}
+            <input type="date" id="date" name="date" value="{{ date_editing }}"/>
+            {% endif %}
+            <input type="submit" name="submit" class="submit-button" value="Go"/>
+        </form>
+        <br><br>
+        <form action="/edit-food-plan" method="POST">
+            <!-- Remember what date and which child's food plans they're editing -->
+            <input class="hidden" type="text" id="editdate" name="editdate" class="form-box" placeholder="" value="{{ date }}">
+            <input class="hidden" type="text" id="childID" name="childID" class="form-box" placeholder="" value="{{ child_id }}">
+            <label for="breakfast">Breakfast</label>
+            <br>
+            <input type="text" id="breakfast" name="breakfast" class="form-box" placeholder="" value="{{ day_meal.breakfast }}">
+                <br><br>
+            <label for="lunch">Lunch</label>
+            <br>
+            <input type="text" id="lunch" name="lunch" class="form-box" placeholder="" value="{{ day_meal.lunch }}">
+                <br><br>
+            <label for="dinner">Dinner</label>
+            <br>
+            <input type="text" id="dinner" name="dinner" class="form-box" placeholder="" value="{{ day_meal.dinner }}">
+                <br><br>
+            <label for="ingredients">Shopping list for the day</label>
+            <br>
+            <textarea type="text" id="ingredients" name="ingredients" class="form-box" placeholder="One ingredient per line">{{ day_meal.ingredients }}</textarea>
+                <br><br>
+            <input type="submit" id="submit" name="submit" class="submit-button" value="Save">
+        </form>
+{% endblock %}
+

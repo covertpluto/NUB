@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block main %}
+        <h1>Diary</h1>
+        <br><br>
+
+        <!-- Search diary records -->
+        <form class="form-inline" action="/diary">
+            <label for="date">Select a date:</label>
+            <input type="date" id="date" name="date" value="{{ years }}-{{ month }}-{{ day }}"/><input type="submit" id="submit" name="submit" class="submit-button" value="Search"/>
+        </form>
+
+        <!-- Show an add button if they are a nanny -->
+        {% if is_nanny %}
+        <a href="/diary-new"><button class="add">+</button></a>
+        {% endif %}
+        {% if records|length >= 1 %}
+        <h4>Tap a record to view it</h4>
+            {% for record in records %}
+                <div class="diarylist" onclick="location.href='/diary?diary_id={{ record[1].diary_id }}';">
+                   <h2>{{ record[1].datetime_str[:-3] }}</h2> <!-- We chop off the last bit of the time string -->
+                    <br>
+                    <p>
+                        <!-- Show a preview of the diary -->
+                        {% if record[1].activity|length <= 40 %}
+                            {{ record[1].activity }}
+                        {% else %}
+                            {{ record[1].activity[:40] }}...
+                        {% endif %}
+                    </p>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <br><br>
+            <h4>No records found<br>Try a different date</h4>
+        {% endif %}
+{% endblock %}
+

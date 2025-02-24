@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block main %}
+
+        <h1>Add child</h1>
+        <br><br>
+        <p>Child added successfully</p>
+
+        {% if email_passwords == None %}
+
+        {% else %}
+        <br><br>
+
+        <h3>Parents added:</h3>
+        {% for parent in email_passwords %}
+            <li>Email: {{ parent[0] }}
+                Password: {{ parent[1] }}
+            </li>
+
+        {% endfor %}{% endif %}
+
+
+{% endblock %}

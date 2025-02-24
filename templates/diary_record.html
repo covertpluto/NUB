@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block main %}
+
+        <h1>Diary record</h1>
+        <br><br>
+        <form action="/diary">
+            <h2>What we did today</h2>
+            <br>
+            {{ record[1].activity }}
+                <br><br>
+
+            <h2>What we ate today</h2>
+            <br>
+            {{ record[1].food }}
+                <br><br>
+
+            <h2>Wow moments</h2>
+            <br>
+            {{ record[1].wow }}
+            <br><br>
+            <h2>Healthcare notes</h2>
+            <br>
+            {{ record[1].health }}
+
+
+            <br><br>
+            <h2>Nap times</h2>
+            <div id="time-entries">
+                {% for nap in record[1].naps %}
+                <ul>From {{ nap[0] }}:{{ nap[1] }} to {{ nap[2] }}:{{ nap[3] }}</ul>
+                {% endfor %}
+            </div>
+
+        </form>
+{% endblock %}

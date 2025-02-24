@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block main %}
+
+        <h1>Connect</h1>
+
+        <h6>Here are nearby nannies sorted by distance:</h6>
+        {% for u in users %}
+        <ul>({{ u[0] }}km) {{ u[1] }}</ul>
+        {% endfor %}
+{% endblock %}
+
+
+

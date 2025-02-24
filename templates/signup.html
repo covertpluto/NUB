@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block main %}
+
+    <h1>Sign up</h1>
+    <br><br>
+
+    <form action="#" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" />
+
+        <label for="email">Email:</label>
+        <input type="text" name="email" />
+
+        <h6 class="errormsg">{{ error }}</h6>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" />
+        <div id="strength-indicator"></div>
+
+
+        <label for="nanny">Sign up as nanny</label>
+        <input type="checkbox" name="is_nanny" />
+
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+
+    <a href="/login"><button class="submit-button">
+        Login
+    </button></a>
+<script>
+  const passwordInput = document.getElementById('password');
+  const strengthIndicator = document.getElementById('strength-indicator');
+  const submitButton = document.getElementById('signup-submitbtn');
+
+  passwordInput.addEventListener('input', function() {
+    const password = this.value;
+    const strength = calculatePasswordStrength(password);
+    updatePasswordStrength(strength);
+  });
+
+  function calculatePasswordStrength(password) {
+    let strength = 0;
+
+    if (password.length >= 8) strength++;
+    if (/[A-Z]/.test(password)) strength++;
+    if (/[a-z]/.test(password)) strength++;
+    if (/[0-9]/.test(password)) strength++;
+    if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+    return strength;
+  }
+
+  function updatePasswordStrength(strength) {
+    let color = 'red';
+    let message = 'Weak';
+
+    if (strength >= 3) {
+      color = 'orange';
+      message = 'Moderate';
+    }
+    if (strength >= 5) {
+      color = 'green';
+      message = 'Strong';
+    }
+
+    passwordInput.style.borderColor = color;
+    strengthIndicator.textContent = message;
+    strengthIndicator.style.color = color;
+
+  }
+</script>
+
+<style>
+  #password-container {
+    margin-bottom: 10px;
+  }
+  #password {
+    border: 2px solid red;
+    padding: 5px;
+    margin-right: 10px;
+  }
+  #strength-indicator {
+    font-weight: bold;
+  }
+</style>
+
+{% endblock %}
+

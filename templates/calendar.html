@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block main %}
+        <h1>My Calendar</h1>
+        <br><br>
+        <form class="form-inline" action="/calendar">
+            <label for="date">Select a date:</label>
+            <input type="date" id="date" name="date" value="{{ years }}-{{ month }}-{{ day }}"/>
+            <input type="submit" id="submit" name="submit" class="submit-button" value="Search"/>
+        </form>
+        {% if is_nanny %}
+        <a href="/calendar-new"><button class="add">+</button></a>
+        {% endif %}
+
+        {% if events|length >= 1 %}
+        <h4>Tap an event to view it</h4>
+
+        {% for event in events %}
+
+
+        <div class="diarylist" onclick="location.href='/calendar?event_id={{ event.event_id }}';">
+           <h2>{{ event.datetime_str[:-3] }}</h2> <!-- We chop off the last bit of the time string -->
+            <br>
+            <p>
+                {% if event.title|length <= 40 %}
+                {{ event.title }}
+                {% else %}
+                {{ event.title[:40] }}...
+                {% endif %}
+            </p>
+        </div>
+
+        {% endfor %}
+
+        {% else %}
+        <br><br>
+        <h4>No events found<br>Try a different date</h4>
+        {% endif %}
+{% endblock %}
+

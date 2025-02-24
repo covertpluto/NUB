@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block main %}
+        <div class="menulist">
+            <button class="menubutton tile">Signed in as {{ name }}</button>
+
+            <select id="relation_select" onchange="document.cookie = 'relationid=' + this.value">
+                {% for relation in relations %}
+                    <option value="{{ relation[0] }}">
+                        {{ ", ".join(relation[1]) }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <button class="menubutton" onclick="location.href='/child-new';">Add new child</button>
+            <button class="menubutton" onclick="location.href='/expenses';">Expenses</button>
+            <button class="menubutton" onclick="location.href='/secure-notes';">Secure notes</button>
+            <button class="menubutton" onclick="location.href='/connect';">Connect</button>
+            <button class="menubutton" onclick="location.href='/logout';">Logout</button>
+
+        </div>
+{% endblock %}

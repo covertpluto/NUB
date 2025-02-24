@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="icon" href="{{url_for('static', filename='icons/icon_144x144.png')}}" type="image/png">
+    <link rel="icon" href="{{url_for('static', filename='icons/icon_192x192.png')}}" type="image/png">
+    <link rel="icon" href="{{url_for('static', filename='icons/icon_512x512.png')}}" type="image/png">
+    <link rel="apple-touch-icon" href="{{url_for('static', filename='icons/icon_144x144.png')}}" type="image/png">
+    <link rel="apple-touch-icon" href="{{url_for('static', filename='icons/icon_192x192.png')}}" type="image/png">
+    <link rel="apple-touch-icon" href="{{url_for('static', filename='icons/icon_512x512.png')}}" type="image/png">
+    <link rel="manifest" href="/manifest.json">
+
+
+    <!-- to generate QR code to install NUB -->
+    <script src=
+                    "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+                    const manifestUrl = '/manifest.json';
+const fetchManifest = async () => {
+try {
+    const response = await fetch(manifestUrl);
+    console.log('Fetched manifest:', response);
+    return await response.json();
+} catch (error) {
+    console.error('Error fetching manifest:', error);
+    return null;
+}
+};
+        });
+
+    </script>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}" type="text/css">
+
+</head>
+<body>
+
+<div class="main-container" id="main">
+    <h1>Welcome to NUB</h1>
+
+    <div>
+        <p>
+        <h2>First time using NUB?</h2>
+
+        <p>
+            NUB (short for Nanny hUB) is an app to help you with your childcare needs.
+            Download NUB by scanning the QR code below to get started
+        <div id="qrcode"></div>
+
+        </p>
+
+        <script>
+            var qrcode = new QRCode("qrcode",
+            "http://nub.alexsquared.co.uk:62222");
+        </script>
+    </div>
+
+
+    <!-- For mobile devices -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+
+</body>
+</html>

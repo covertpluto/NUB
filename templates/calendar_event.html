@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block main %}
+
+        <h1>{{ event.datetime_str[:-3] }}</h1>
+        <br><br>
+        <form>
+            <h2>{{ event.title }}</h2>
+                <br><br>
+
+            {{ event.note }}
+                <br><br>
+
+
+
+        </form>
+{% endblock %}

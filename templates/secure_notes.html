@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block main %}
+
+        <h1>Secure notes</h1>
+        <br><br>
+        <form action="/secure-notes" method="POST">
+
+
+
+            <label for="notes">Notes (click to expand)</label>
+            <br>
+            <textarea id="notes" name="notes" rows="10" cols="50" class="form-box" placeholder="None" onclick='this.style.height = "";this.style.height = this.scrollHeight + "px"' oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'>{{ notes }}</textarea>
+
+                <br><br>
+
+
+
+
+            <input type="submit" id="submit" name="submit" class="submit-button" value="Save">
+        </form>
+{% endblock %}

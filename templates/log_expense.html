@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block main %}
+
+        <h1>Log expense</h1>
+        <br><br>
+        <form action="/log-expense" method="POST">
+
+
+            <label for="amount">Expense amount</label>
+            <input type="text" id="amount" name="amount" placeholder="e.g. 5.00 do not include currency">
+            <p class="errormsg">{{ errormsg }}</p>
+
+            <label for="description">Description</label>
+            <input type="text" id="description" name="description">
+
+            <input type="submit" id="submit" name="submit" class="submit-button" value="Save">
+        </form>
+{% endblock %}
+

@@ -1,0 +1,234 @@
+@font-face {
+    font-family: 'plantagenet-cherokee';
+    src: url('Plantagenet-Cherokee.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+@media print {
+    html, body {
+       display: none;  /* hide whole page */
+    }
+}
+
+body {
+  font-family: 'plantagenet-cherokee';
+  font-size: 42px;
+  margin: 0;
+  padding: 0;
+  background-color: #F6EBE6;
+    -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+.hidden {
+    display: none;
+}
+
+
+.sidebar-open-container {
+margin-top: 0;
+
+}
+
+.sidebar-open-container button {
+  padding: 0.5rem 1rem;
+  float: right;
+  border: 0px;
+  background-color: transparent;
+}
+
+.main-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  position: absolute;
+  width: 100%;
+  align-items: center;
+}
+
+.main-container * {
+    margin: auto;
+    margin-left: 3.5%;
+    margin-right: 3.5%;
+}
+
+.main-container h1 {
+   text-align: center;
+}
+
+.main-container next-events {
+   text-align: center;
+}
+
+.main-container events {
+   text-align: center;
+}
+
+.main-container * {
+   text-align: center;
+}
+
+.main-container label {
+    text-align: center;
+}
+.main-container input {
+    text-align: center;
+    font-family: "plantagenet-cherokee";
+    border: 2;
+    border-radius: 50;
+    width: 80%;
+    height: 100px;
+    font-size: 42px;
+}
+
+.main-container textarea {
+    text-align: center;
+    font-family: "plantagenet-cherokee";
+    border: 2;
+    border-radius: 50;
+    width: 80%;
+    height: 100px;
+    font-size: 42px;
+}
+
+.main-container .submit-button {
+    font-family: "plantagenet-cherokee";
+    width: 56.5%;
+    margin-left: 23%;
+    margin-right: auto;
+    border-radius: 12.5px;
+    background-color: #6B7C70;
+    color: #fff;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.add {
+    font-family: "plantagenet-cherokee";
+    border-radius: 12.5px;
+    background-color: #6B7C70;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    font-size: 32px;
+}
+
+.time-entry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+select {
+    margin: 0 5px;
+    padding: 5px;
+    font-size: 42px;
+    color: #6b7c70;
+}
+
+
+.add-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    font-size: 45px;
+}
+
+button.remove-btn {
+    background-color: #dc3545;
+}
+
+button:focus {
+    outline: none;
+}
+
+button[type="submit"] {
+    align-self: flex-start;
+    margin-top: 20px;
+}
+
+.diarylist {
+    background-color: #f5f5f5;
+    margin-top: 40px;
+}
+
+.form-inline {
+display: flex;
+flex-flow: row wrap;
+align-items: center;
+}
+
+/* Place the navbar at the bottom of the page, and make it stick */
+.navbar {
+  background-color: #fcfaf7;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 10%;
+  display: flex;
+flex-flow: row wrap;
+align-items: center;
+justify-content: space-between;
+}
+
+.navbar-button {
+  background-color: inherit;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  width: 20%;
+}
+
+.white-bg {
+  background-color: #f5f5f5;
+}
+
+.navbar-icon {
+  width: 100%;
+  height: 120%;
+  translate: 0 -25%; /* Account for iOS bottom bar */
+  display: block;
+  margin: 0 auto;
+
+}
+
+.errormsg {
+color: red;
+}
+
+.menulist {
+    /* align in center */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.menubutton {
+    font-family: "plantagenet-cherokee";
+    width: 56.5%;
+    border-radius: 12.5px;
+    background-color: #6B7C70;
+    color: #fff;
+    font-weight: bold;
+    font-size: 32px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+}
+
+textarea { height: auto; }

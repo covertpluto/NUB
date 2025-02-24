@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block main %}
+
+        <h1>Food plans</h1>
+        <form class="form-inline" action="/food-plan">
+            <label for="date">Select a date:</label>
+            {% if date_viewing|length == 0 %}
+            <input type="date" id="date" name="date" value="{{ years }}-{{ month }}-{{ day }}"/>
+            {% else %}
+            <input type="date" id="date" name="date" value="{{ date_viewing }}"/>
+            {% endif %}
+
+            <input type="submit" name="submit" class="submit-button" value="Go"/>
+        </form>
+        {% if is_nanny %}
+        <a href="/edit-food-plan"><button class="add">+</button></a>
+        {% endif %}
+        <br><br>
+        <form action="/save-food-plan" method="GET">
+            {% if day_meal.breakfast != "" %}
+            <h2>Breakfast</h2>
+            <br>
+            {{ day_meal.breakfast }}
+                <br><br>
+            <h2>Lunch</h2>
+            <br>
+            {{ day_meal.lunch }}
+                <br><br>
+            <h2>Dinner</h2>
+            <br>
+            {{ day_meal.dinner }}
+                <br><br>
+            <h2>Shopping list for the day</h2>
+            {% if day_meal.ingredients_list()|length >= 1 %}
+            <h6>Tap item to remove from shopping list</h6>
+            <br>
+            {% for ingredient in day_meal.ingredients_list() %}
+            <div class="diarylist" onclick="location.href='/removeingredient?item_name={{ ingredient }}&meal_id={{ day_meal.meal_id }}&date_viewing={{ date_viewing }}&child_id={{ child_id }}';">
+                {{ ingredient }}
+            </div>
+            {% endfor %}
+                <br><br>
+            {% else %}
+            <h2>All shopping done for today!</h2>
+            {% endif %}
+            {% else %}
+            <h2>There are no food plans for this day</h2>
+            {% endif %}
+        </form>
+{% endblock %}

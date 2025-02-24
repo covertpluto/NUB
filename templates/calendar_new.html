@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block main %}
+
+        <h1>New Calendar Event</h1>
+        <br><br>
+        <form action="/calendar-new" method="POST">
+
+            <label for="title">Reminder title</label>
+            <br>
+            <input type="text" id="title" name="title" class="form-box" placeholder="">
+                <br><br>
+
+            <label for="note">Reminder note</label>
+            <br>
+            <textarea id="note" name="note" class="form-box" placeholder=""></textarea>
+                <br><br>
+
+            <label for="time">Time</label>
+            <input type="time" id="time" name="time" value="{{ hours }}:{{ minutes }}"/>
+
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" value="{{ years }}-{{ month }}-{{ day }}"/>
+
+            <label for="time_end">Time end</label>
+            <input type="time" id="time_end" name="time_end" value="{{ hours }}:{{ minutes }}"/>
+
+            <label for="date_end">Date end</label>
+            <input type="date" id="date_end" name="date_end" value="{{ years }}-{{ month }}-{{ day }}"/>
+            <br>
+
+            <h6 class="errormsg">{{ error }}</h6>
+
+            <input type="submit" id="submit" name="submit" class="submit-button" value="Save">
+        </form>
+{% endblock %}
+
